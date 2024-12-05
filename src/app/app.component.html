@@ -1,0 +1,55 @@
+<div class="top-menu">
+  <img
+    class="logo"
+    src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
+  />
+</div>
+
+<!-- <div class="demo">
+  <div>Start Date: {{ startDate | date: 'MMM/dd/yyyy' }}</div>
+
+  <div> {{title | titlecase}} </div>
+
+  <div> {{price | currency: 'RON'}} </div>
+
+</div> -->
+
+<!-- <div *ngFor="let pair of course | keyvalue">
+  {{pair.key + " :" + pair.value}}
+</div> -->
+
+<div class="courses" *ngIf="courses[0] as course">
+
+  <ng-template #blankImage let-courseName="description">
+    <p class="warn">{{ courseName }} has no image yet.</p>
+    <img src="/assets/empty-image.png" alt="" />
+  </ng-template>
+
+
+  <course-card 
+    (courseSelected)="onCourseSelected($event)" [course]="course" [noImageTpl]="blankImage">
+
+    <course-image [src]="course.iconUrl"></course-image>
+
+    <div class="course-description">
+      {{ course.longDescription }}
+    </div>
+
+  </course-card>
+
+  <!-- @for (course of courses; track course.id; let index = $index; 
+  let count =$count; let first = $first; let last = $last; let even = $even; let odd = $odd
+  ){
+  <course-card
+    [course]="course"
+    [index]="index"
+
+    [class.is-first]="first"
+    [class.is-last]="last"
+    
+    (courseSelected)="onCourseSelected($event)"
+  />
+  } @empty {
+  <h1>No courses found!</h1>
+  } -->
+</div>
